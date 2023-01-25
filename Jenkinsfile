@@ -4,8 +4,11 @@ pipeline {
     stage('Create Staging branch'){
       steps{
         echo 'Create Staging branch'
-        sh 'git branch staging'
-        sh 'git checkout staging'
+        sh 'git checkout dev'
+        sh 'git pull'
+        sh 'git checkout -b staging'
+        sh 'git pull'
+        sh 'git merge dev'
         sh 'git push --set-upstream origin staging'
       }
     }
@@ -25,6 +28,15 @@ pipeline {
       steps{
         echo 'deploy'
         sh 'docker build -t jenkins-private .'
+      }
+    }
+    stage('merge'){
+      steps{
+        echo 'merge'
+        sh 'git checkout main'
+        sh 'git merge staging'
+        sh 'git push'
+
       }
     }
   }
