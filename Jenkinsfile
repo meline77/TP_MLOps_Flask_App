@@ -11,7 +11,7 @@ pipeline {
         sh 'git checkout -b staging'
         //sh 'git pull'
         sh 'git merge dev'
-        sh 'git push --set-upstream origin staging'
+        //sh 'git push --set-upstream origin staging'
       }
     }
     stage('build'){
