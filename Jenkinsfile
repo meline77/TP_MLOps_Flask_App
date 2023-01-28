@@ -4,41 +4,53 @@ pipeline {
     stage('Create Staging branch'){
       steps{
         echo 'Create Staging branch'
-        sh 'git branch'
-        sh 'git checkout main'
-        sh 'git checkout dev'
-        sh 'git pull'
-        sh 'git checkout staging'
-        //sh 'git pull'
-        sh 'git merge dev'
-        //sh 'git push --set-upstream origin staging'
+        
+        bat 'git branch -d staging'
+        bat 'git push origin --delete staging'
+        
+        
+        bat 'git branch'
+        bat 'git checkout main'
+        bat 'git checkout dev'
+        bat 'git pull'
+        bat 'git checkout staging'
+        //bat 'git pull'
+        bat 'git merge dev'
+        //bat 'git push --set-upstream origin staging'
       }
     }
     stage('build'){
       steps{
         echo 'build'
-        sh 'pip install -r requirements.txt'
+        bat 'pip install -r requirements.txt'
       }
     }
     stage('test'){
       steps{
         echo 'test'
-        sh 'python test_main.py'
+        bat 'python test_main.py'
       }
     } 
     stage('deploy'){
       steps{
         echo 'deploy'
-        sh 'docker build -t jenkins-private .'
+        bat 'docker build -t jenkins-private .'
       }
     }
     stage('merge'){
       steps{
         echo 'merge'
-        sh 'git checkout main'
-        sh 'git merge staging'
-        sh 'git push'
-
+        bat 'git checkout main'
+        bat 'git merge staging'
+        bat 'git push'
+      }
+    }
+    
+    stage('delete staging'){
+      steps{
+        echo 'delete'
+        bat 'git branch -d staging'
+        bat 'git push origin --delete staging'
       }
     }
   }
