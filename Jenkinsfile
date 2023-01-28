@@ -6,8 +6,7 @@ pipeline {
         echo 'Create Staging branch'
         
         // bat 'git branch -d staging'
-        bat 'git push origin --delete staging'
-        
+        // bat 'git push origin --delete staging'  
         
         bat 'git branch'
         bat 'git checkout main'
