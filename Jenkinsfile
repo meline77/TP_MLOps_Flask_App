@@ -3,7 +3,7 @@ pipeline {
   stages{ 
     stage('Create Staging branch'){
       steps{
-        echo 'Create Staging branch'
+        echo 'Create Staging branch' 
         
         bat 'git branch -d staging'
         // bat 'git push origin --delete staging'
