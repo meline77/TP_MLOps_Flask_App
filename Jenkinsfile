@@ -9,13 +9,13 @@ pipeline {
         // bat 'git push origin --delete staging'  
         
         bat 'git branch'
-        bat 'git checkout main'
+        // bat 'git checkout main'
         bat 'git checkout dev'
         bat 'git pull'
-        bat 'git checkout staging'
+        bat 'git checkout -b staging'
         //bat 'git pull'
         bat 'git merge dev'
-        //bat 'git push --set-upstream origin staging'
+        bat 'git push --set-upstream origin staging'
       }
     }
     stage('build'){
