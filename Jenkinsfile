@@ -7,7 +7,7 @@ pipeline {
         
         // bat 'git branch -d staging'
         // bat 'git push origin --delete staging'  
-        
+         
         bat 'git branch'
         // bat 'git checkout main'
         bat 'git checkout dev'
