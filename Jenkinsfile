@@ -5,6 +5,12 @@ pipeline {
       steps{
         echo 'Create Staging branch' 
         
+        bat 'git checkout dev'
+        bat 'git pull --allow-unrelated-hostories'
+        bat 'git checkout -b staging dev'
+        bat 'git push --set-upstream origin staging'
+        
+        /*
         bat 'git branch -d staging'
         // bat 'git push origin --delete staging'
          
@@ -16,6 +22,7 @@ pipeline {
         //bat 'git pull'
         bat 'git merge dev'
         bat 'git push --set-upstream origin staging'
+        */
       }
     }
     stage('build'){
