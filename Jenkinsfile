@@ -9,8 +9,8 @@ pipeline {
         
         bat 'git checkout dev'
         bat 'git pull --allow-unrelated-histories'
-        bat 'git checkout -b staging dev'
-        bat 'git push --set-upstream origin staging'
+        bat 'git checkout -b staging'
+        bat 'git push dev'
         
         /*
         bat 'git branch -d staging'
